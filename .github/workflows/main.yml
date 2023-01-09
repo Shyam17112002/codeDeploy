@@ -1,0 +1,11 @@
+name: deploy and restart
+on:
+  push:
+    [branches]: master
+jobs:
+  run-the-server:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v3     
+      - run: npm i 
+      - run: npm start
