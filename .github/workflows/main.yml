@@ -4,12 +4,16 @@ on:
     branches:
       - master
 jobs:
-  run-the-server:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3    
         with:
           node-version: 16
-      - run: npm install
-      - run: npm start
+      - uses: easingthemes/ssh-deploy@main
+        SSH_PRIVATE_KEY:  ${{codeDeploy-keypair.pem}}
+        REMOTE_HOST:  'ec2-3-109-203-172.ap-south-1.compute.amazonaws.com'
+        REMOTE_USER:  'ubuntu'
+        TARGET: '/home/ubuntu/codeDeploy'
+  
