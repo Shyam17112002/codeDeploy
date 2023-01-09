@@ -1,7 +1,8 @@
 name: deploy and restart
 on:
   push:
-    [branches]: master
+    branches:
+      - master
 jobs:
   run-the-server:
     runs-on: ubuntu-latest
